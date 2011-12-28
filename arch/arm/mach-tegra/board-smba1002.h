@@ -1,5 +1,5 @@
 /*
- * arch/arm/mach-tegra/board-adam.h
+ * arch/arm/mach-tegra/board-smba1002.h
  *
  * Copyright (C) 2011 Eduardo José Tagle <ejtagle@tutopia.com>
  *
@@ -14,56 +14,56 @@
  *
  */
 
-#ifndef _MACH_TEGRA_BOARD_ADAM_H
-#define _MACH_TEGRA_BOARD_ADAM_H
+#ifndef _MACH_TEGRA_BOARD_SMBA1002_H
+#define _MACH_TEGRA_BOARD_SMBA1002_H
 
 #define TPS6586X_INT_BASE	TEGRA_NR_IRQS
 
-#define ADAM_BT_RESET 		TEGRA_GPIO_PU0 	/* 0= reset asserted */
+#define SMBA1002_BT_RESET 		TEGRA_GPIO_PU0 	/* 0= reset asserted */
 
 /* GPS and Magnetic sensor share the same enabling IO line */
-#define ADAM_GPSMAG_DISABLE  	TEGRA_GPIO_PV3 	/* 0= disabled */
-#define ADAM_3G_DISABLE		TEGRA_GPIO_PJ2 /* 0 = disabled */
-#define ADAM_KEY_VOLUMEUP 	TEGRA_GPIO_PD4 	/* 0=pressed */
-#define ADAM_KEY_VOLUMEDOWN 	TEGRA_GPIO_PV4 	/* 0=pressed */
-#define ADAM_KEY_POWER 		TEGRA_GPIO_PV2 	/* 0=pressed */
-#define ADAM_KEY_BACK		TEGRA_GPIO_PH0	/* 0=pressed */
+#define SMBA1002_GPSMAG_DISABLE  	TEGRA_GPIO_PV3 	/* 0= disabled */
+#define SMBA1002_3G_DISABLE		TEGRA_GPIO_PJ2 /* 0 = disabled */
+#define SMBA1002_KEY_VOLUMEUP 	TEGRA_GPIO_PD4 	/* 0=pressed */
+#define SMBA1002_KEY_VOLUMEDOWN 	TEGRA_GPIO_PV4 	/* 0=pressed */
+#define SMBA1002_KEY_POWER 		TEGRA_GPIO_PV2 	/* 0=pressed */
+#define SMBA1002_KEY_BACK		TEGRA_GPIO_PH0	/* 0=pressed */
 
-/* #define ADAM_EMC_SAMSUNG		*/
-/* #define ADAM_EMC_ELPIDA50NM	*/
-/* #define ADAM_EMC_ELPIDA40NM	*/
+/* #define SMBA1002_EMC_SAMSUNG		*/
+/* #define SMBA1002_EMC_ELPIDA50NM	*/
+/* #define SMBA1002_EMC_ELPIDA40NM	*/
 
-#define ADAM_CAMERA_POWER 	TEGRA_GPIO_PBB5 /* 1=powered on */
-#define ADAM_CAMERA_ROTATION	TEGRA_GPIO_PX7
+#define SMBA1002_CAMERA_POWER 	TEGRA_GPIO_PBB5 /* 1=powered on */
+#define SMBA1002_CAMERA_ROTATION	TEGRA_GPIO_PX7
 
-#define ADAM_NAND_WPN		TEGRA_GPIO_PC7	/* NAND flash write protect: 0=writeprotected */
+#define SMBA1002_NAND_WPN		TEGRA_GPIO_PC7	/* NAND flash write protect: 0=writeprotected */
 
-#define ADAM_BL_ENB			TEGRA_GPIO_PD3
-#define ADAM_LVDS_SHUTDOWN	TEGRA_GPIO_PB2 // Is this right?
-#define ADAM_EN_VDD_PANEL	TEGRA_GPIO_PC6 
-#define ADAM_BL_VDD			TEGRA_GPIO_PW0
-#define ADAM_BL_PWM			TEGRA_GPIO_PU3 /* PWM */
-#define ADAM_HDMI_ENB		TEGRA_GPIO_PV5 /* unconfirmed */ // Does adam have HDMI enbl?
-#define ADAM_HDMI_HPD		TEGRA_GPIO_PN7 /* 1=HDMI plug detected */
+#define SMBA1002_BL_ENB			TEGRA_GPIO_PD3
+#define SMBA1002_LVDS_SHUTDOWN	TEGRA_GPIO_PB2 // Is this right?
+#define SMBA1002_EN_VDD_PANEL	TEGRA_GPIO_PC6 
+#define SMBA1002_BL_VDD			TEGRA_GPIO_PW0
+#define SMBA1002_BL_PWM			TEGRA_GPIO_PU3 /* PWM */
+#define SMBA1002_HDMI_ENB		TEGRA_GPIO_PV5 /* unconfirmed */ // Does smba1002 have HDMI enbl?
+#define SMBA1002_HDMI_HPD		TEGRA_GPIO_PN7 /* 1=HDMI plug detected */
 
-#define ADAM_BL_PWM_ID		0				/* PWM0 controls backlight */
+#define SMBA1002_BL_PWM_ID		0				/* PWM0 controls backlight */
 
-#define ADAM_FB_PAGES		2				/* At least, 2 video pages */
-#define ADAM_FB_HDMI_PAGES	2				/* At least, 2 video pages for HDMI */
+#define SMBA1002_FB_PAGES		2				/* At least, 2 video pages */
+#define SMBA1002_FB_HDMI_PAGES	2				/* At least, 2 video pages for HDMI */
 
 // Adam memory is 2xSZ_512M
-#define ADAM_MEM_SIZE 		SZ_512M			/* Total memory */
-#define ADAM_MEM_BANKS		2
+#define SMBA1002_MEM_SIZE 		SZ_512M			/* Total memory */
+#define SMBA1002_MEM_BANKS		2
 
-#define ADAM_GPU_MEM_SIZE 		SZ_128M		/* Memory reserved for GPU */
-//#define ADAM_GPU_MEM_SIZE 	SZ_64M			/* Memory reserved for GPU */
+#define SMBA1002_GPU_MEM_SIZE 		SZ_128M		/* Memory reserved for GPU */
+//#define SMBA1002_GPU_MEM_SIZE 	SZ_64M			/* Memory reserved for GPU */
 
-#define ADAM_FB1_MEM_SIZE 	SZ_8M			/* Memory reserved for Framebuffer 1: LCD */
-#define ADAM_FB2_MEM_SIZE 	SZ_8M			/* Memory reserved for Framebuffer 2: HDMI out */
+#define SMBA1002_FB1_MEM_SIZE 	SZ_8M			/* Memory reserved for Framebuffer 1: LCD */
+#define SMBA1002_FB2_MEM_SIZE 	SZ_8M			/* Memory reserved for Framebuffer 2: HDMI out */
 
 #define DYNAMIC_GPU_MEM 1						/* use dynamic memory for GPU */
 
-/*#define ADAM_48KHZ_AUDIO*/ /* <- define this if you want 48khz audio sampling rate instead of 44100Hz */
+/*#define SMBA1002_48KHZ_AUDIO*/ /* <- define this if you want 48khz audio sampling rate instead of 44100Hz */
 
 
 // TPS6586x GPIOs as registered 
@@ -79,75 +79,75 @@
 #define PMU_IRQ_BASE		(TEGRA_NR_IRQS)
 #define PMU_IRQ_RTC_ALM1 	(TPS6586X_INT_BASE + TPS6586X_INT_RTC_ALM1)
 
-#define	ADAM_ENABLE_VDD_VID	TEGRA_GPIO_PD1	/* 1=enabled.  Powers HDMI. Wait 500uS to let it stabilize before returning */
+#define	SMBA1002_ENABLE_VDD_VID	TEGRA_GPIO_PD1	/* 1=enabled.  Powers HDMI. Wait 500uS to let it stabilize before returning */
 
 // TODO: Find whether there are any definitions for these?
-/*#define ADAM_SDIO0_CD		TEGRA_GPIO_PI5
-#define ADAM_SDIO0_POWER	TEGRA_GPIO_PD0*/	/* SDIO0 and SDIO2 power */
+/*#define SMBA1002_SDIO0_CD		TEGRA_GPIO_PI5
+#define SMBA1002_SDIO0_POWER	TEGRA_GPIO_PD0*/	/* SDIO0 and SDIO2 power */
 
-#define ADAM_SDHC_CD		TEGRA_GPIO_PI5
-#define ADAM_SDHC_WP		-1	/*1=Write Protected */
-#define ADAM_SDHC_POWER	TEGRA_GPIO_PD0
+#define SMBA1002_SDHC_CD		TEGRA_GPIO_PI5
+#define SMBA1002_SDHC_WP		-1	/*1=Write Protected */
+#define SMBA1002_SDHC_POWER	TEGRA_GPIO_PD0
 
-#define ADAM_TS_IRQ		TEGRA_GPIO_PJ7
-#define ADAM_TS_RESET	TEGRA_GPIO_PH1
-#define ADAM_TS_POWER	TEGRA_GPIO_PK2
-//#define ADAM_TS_DISABLE	TEGRA_GPIO_PAA6 /* 0=enabled */
+#define SMBA1002_TS_IRQ		TEGRA_GPIO_PJ7
+#define SMBA1002_TS_RESET	TEGRA_GPIO_PH1
+#define SMBA1002_TS_POWER	TEGRA_GPIO_PK2
+//#define SMBA1002_TS_DISABLE	TEGRA_GPIO_PAA6 /* 0=enabled */
 
-//#define ADAM_FB_NONROTATE TEGRA_GPIO_PH1 /*1 = screen rotation locked */
+//#define SMBA1002_FB_NONROTATE TEGRA_GPIO_PH1 /*1 = screen rotation locked */
 
-#define ADAM_WLAN_POWER 	TEGRA_GPIO_PK5
-#define ADAM_WLAN_RESET 	TEGRA_GPIO_PK6
+#define SMBA1002_WLAN_POWER 	TEGRA_GPIO_PK5
+#define SMBA1002_WLAN_RESET 	TEGRA_GPIO_PK6
 
-#define ADAM_BT_RST		TEGRA_GPIO_PU0
+#define SMBA1002_BT_RST		TEGRA_GPIO_PU0
 
-#define ADAM_LOW_BATT	TEGRA_GPIO_PW3 /*(0=low battery)*/
-#define ADAM_IN_S3		TEGRA_GPIO_PAA7 /*1 = in S3 */
+#define SMBA1002_LOW_BATT	TEGRA_GPIO_PW3 /*(0=low battery)*/
+#define SMBA1002_IN_S3		TEGRA_GPIO_PAA7 /*1 = in S3 */
 
-#define ADAM_USB0_VBUS		TEGRA_GPIO_PB0		/* 1= VBUS usb0 */
-#define ADAM_USB1_RESET		TEGRA_GPIO_PV1	/* 0= reset */
+#define SMBA1002_USB0_VBUS		TEGRA_GPIO_PB0		/* 1= VBUS usb0 */
+#define SMBA1002_USB1_RESET		TEGRA_GPIO_PV1	/* 0= reset */
 
-#define ADAM_HP_DETECT	TEGRA_GPIO_PW2 	/* HeadPhone detect for audio codec: 1=Hedphone plugged */
+#define SMBA1002_HP_DETECT	TEGRA_GPIO_PW2 	/* HeadPhone detect for audio codec: 1=Hedphone plugged */
 
-#define ADAM_NVEC_REQ	TEGRA_GPIO_PD0	/* Set to 0 to send a command to the NVidia Embedded controller */
-#define ADAM_NVEC_I2C_ADDR 0x8a 			/* I2C address of Tegra, when acting as I2C slave */
+#define SMBA1002_NVEC_REQ	TEGRA_GPIO_PD0	/* Set to 0 to send a command to the NVidia Embedded controller */
+#define SMBA1002_NVEC_I2C_ADDR 0x8a 			/* I2C address of Tegra, when acting as I2C slave */
 
-#define ADAM_WAKE_KEY_POWER  TEGRA_WAKE_GPIO_PV2
-#define ADAM_WAKE_KEY_RESUME TEGRA_WAKE_GPIO_PV2
+#define SMBA1002_WAKE_KEY_POWER  TEGRA_WAKE_GPIO_PV2
+#define SMBA1002_WAKE_KEY_RESUME TEGRA_WAKE_GPIO_PV2
 
 /* The switch used to indicate rotation lock */
 //#define SW_ROTATION_LOCK 	(SW_MAX-1)
 
-extern void adam_gps_mag_poweron(void);
-extern void adam_gps_mag_poweroff(void);
-extern void adam_gps_mag_init(void);
+extern void smba1002_gps_mag_poweron(void);
+extern void smba1002_gps_mag_poweroff(void);
+extern void smba1002_gps_mag_init(void);
 
-extern void adam_wifi_set_cd(int val);
+extern void smba1002_wifi_set_cd(int val);
 
-extern void adam_init_emc(void);
-extern void adam_pinmux_init(void);
-extern void adam_clks_init(void);
+extern void smba1002_init_emc(void);
+extern void smba1002_pinmux_init(void);
+extern void smba1002_clks_init(void);
 
-extern int adam_usb_register_devices(void);
-extern int adam_audio_register_devices(void);
-extern int adam_jack_register_devices(void);
-extern int adam_gpu_register_devices(void);
-extern int adam_uart_register_devices(void);
-extern int adam_spi_register_devices(void);
-extern int adam_aes_register_devices(void);
-extern int adam_wdt_register_devices(void);
-extern int adam_i2c_register_devices(void);
-extern int adam_power_register_devices(void);
-extern int adam_keyboard_register_devices(void);
-extern int adam_touch_register_devices(void);
-extern int adam_sdhci_register_devices(void);
-extern int adam_sensors_register_devices(void);
-extern int adam_wlan_pm_register_devices(void);
-extern int adam_gps_pm_register_devices(void);
-extern int adam_gsm_pm_register_devices(void);
-extern int adam_bt_pm_register_devices(void);
-extern int adam_nand_register_devices(void);
-extern int adam_camera_register_devices(void);
+extern int smba1002_usb_register_devices(void);
+extern int smba1002_audio_register_devices(void);
+extern int smba1002_jack_register_devices(void);
+extern int smba1002_gpu_register_devices(void);
+extern int smba1002_uart_register_devices(void);
+extern int smba1002_spi_register_devices(void);
+extern int smba1002_aes_register_devices(void);
+extern int smba1002_wdt_register_devices(void);
+extern int smba1002_i2c_register_devices(void);
+extern int smba1002_power_register_devices(void);
+extern int smba1002_keyboard_register_devices(void);
+extern int smba1002_touch_register_devices(void);
+extern int smba1002_sdhci_register_devices(void);
+extern int smba1002_sensors_register_devices(void);
+extern int smba1002_wlan_pm_register_devices(void);
+extern int smba1002_gps_pm_register_devices(void);
+extern int smba1002_gsm_pm_register_devices(void);
+extern int smba1002_bt_pm_register_devices(void);
+extern int smba1002_nand_register_devices(void);
+extern int smba1002_camera_register_devices(void);
 
 #endif
 
