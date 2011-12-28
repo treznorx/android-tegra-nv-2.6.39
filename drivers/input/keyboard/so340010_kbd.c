@@ -184,7 +184,7 @@ static int so340010_i2c_read(struct so340010_kbd_dev *dev, unsigned short reg_st
 
 	msgs[0].addr = dev->client->addr;
 	msgs[0].len = 2;
-	msgs[0].buf = &reg_buffer;
+	msgs[0].buf = reg_buffer;
 	msgs[0].flags = 0;
 	
 	msgs[1].addr = dev->client->addr;
@@ -471,7 +471,7 @@ static void so340010_kbd_early_suspend(struct early_suspend *es)
 	logd(TAG "so340010_kbd_early_suspend() IN\r\n");
 	
 	dev = (struct so340010_kbd_dev *)container_of(es, struct so340010_kbd_dev, early_suspend);
-	enable_irq(dev->client->irq);
+	disable_irq(dev->client->irq);
 	//NvOdmGpioInterruptMask(dev->irq_handle, NV_TRUE);
 	cancel_work_sync(&dev->work);
 	so340010_sleep(dev, true);
