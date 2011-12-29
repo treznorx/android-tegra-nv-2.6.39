@@ -489,7 +489,7 @@ static void so340010_kbd_late_resume(struct early_suspend *es)
 	if (so340010_reset(dev)) {
 		logd(TAG "so340010_reset_failed\r\n");
 	}
-	disable_irq(dev->client->irq);
+	enable_irq(dev->client->irq);
 	//NvOdmGpioInterruptMask(dev->irq_handle, NV_FALSE);
 }
 #endif
