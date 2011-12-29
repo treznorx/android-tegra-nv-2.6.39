@@ -67,7 +67,7 @@
 #include "gpio-names.h"
 #include "devices.h"
 #include "wakeups-t2.h"
-
+#include "pm.h"
 
 /* NVidia bootloader tags */
 #define ATAG_NVIDIA		0x41000801
@@ -133,8 +133,8 @@ void smba1002_gps_mag_deinit(void)
 EXPORT_SYMBOL_GPL(smba1002_gps_mag_deinit);
 
 static struct tegra_suspend_platform_data smba1002_suspend = {
-	.cpu_timer = 5000,
-	.cpu_off_timer = 5000,
+	.cpu_timer = 500,
+	.cpu_off_timer = 500,
 	.core_timer = 0x7e7e,
 	.core_off_timer = 0x7f,
     .corereq_high = false,
