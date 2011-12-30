@@ -383,7 +383,7 @@ static void so340010_timer_func(unsigned long __dev)
 static void so340010_work_func(struct work_struct *work)
 {
 	int i, ret;
-	unsigned int gpio_val, button_val;
+	unsigned short gpio_val, button_val;
 	struct so340010_kbd_dev *dev;
 
 	dev = (struct so340010_kbd_dev *)container_of(work, struct so340010_kbd_dev, work);
