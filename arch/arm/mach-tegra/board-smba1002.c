@@ -67,7 +67,7 @@
 #include "gpio-names.h"
 #include "devices.h"
 #include "wakeups-t2.h"
-#include "pm.h"
+
 
 /* NVidia bootloader tags */
 #define ATAG_NVIDIA		0x41000801

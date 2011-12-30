@@ -24,8 +24,12 @@
 #include <linux/i2c-tegra.h>
 
 #include <asm/mach-types.h>
+//#include <mach/nvhost.h>
+#include <mach/nvmap.h>
 #include <mach/irqs.h>
 #include <mach/iomap.h>
+#include <mach/dc.h>
+#include <mach/fb.h>
 
 #include "board.h"
 #include "devices.h"

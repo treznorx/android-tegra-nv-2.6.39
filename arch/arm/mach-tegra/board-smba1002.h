@@ -53,13 +53,12 @@
 
 // Adam memory is 2xSZ_512M
 #define SMBA1002_MEM_SIZE 		SZ_512M			/* Total memory */
-#define SMBA1002_MEM_BANKS		1
+#define SMBA1002_MEM_BANKS		2
 
-//#define SMBA1002_GPU_MEM_SIZE 		SZ_128M		/* Memory reserved for GPU */
+#define SMBA1002_GPU_MEM_SIZE 		SZ_128M		/* Memory reserved for GPU */
 //#define SMBA1002_GPU_MEM_SIZE 	SZ_64M			/* Memory reserved for GPU */
-#define SMBA1002_GPU_MEM_SIZE    (45*SZ_2M)      /* Memory reserved for GPU */
 
-#define SMBA1002_FB1_MEM_SIZE 	SZ_4M			/* Memory reserved for Framebuffer 1: LCD */
+#define SMBA1002_FB1_MEM_SIZE 	SZ_8M			/* Memory reserved for Framebuffer 1: LCD */
 #define SMBA1002_FB2_MEM_SIZE 	SZ_8M			/* Memory reserved for Framebuffer 2: HDMI out */
 
 #define DYNAMIC_GPU_MEM 1						/* use dynamic memory for GPU */
@@ -115,6 +114,8 @@
 
 #define SMBA1002_WAKE_KEY_POWER  TEGRA_WAKE_GPIO_PV2
 #define SMBA1002_WAKE_KEY_RESUME TEGRA_WAKE_GPIO_PV2
+
+#define SMBA1002_TEMP_ALERT	TEGRA_GPIO_PN6
 
 /* The switch used to indicate rotation lock */
 //#define SW_ROTATION_LOCK 	(SW_MAX-1)
