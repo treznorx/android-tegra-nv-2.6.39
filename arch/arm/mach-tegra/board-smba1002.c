@@ -66,6 +66,7 @@
 #include "clock.h"
 #include "gpio-names.h"
 #include "devices.h"
+#include "pm.h"
 #include "wakeups-t2.h"
 
 
@@ -278,8 +279,8 @@ static void __init tegra_smba1002_fixup(struct machine_desc *desc,
 	mi->bank[0].size  = SMBA1002_MEM_SIZE - SMBA1002_GPU_MEM_SIZE;
 #endif
 	// Adam has two 512MB banks. Easier to hardcode if we leave SMBA1002_MEM_SIZE at 512MB
-	mi->bank[1].start = SMBA1002_MEM_SIZE;
-	mi->bank[1].size = SMBA1002_MEM_SIZE;
+	//mi->bank[1].start = SMBA1002_MEM_SIZE;
+	//mi->bank[1].size = SMBA1002_MEM_SIZE;
 } 
 
 MACHINE_START(HARMONY, "harmony")
