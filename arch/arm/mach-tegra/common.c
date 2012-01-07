@@ -211,12 +211,7 @@ void tegra_init_cache(void)
 
 static void __init tegra_init_power(void)
 {
-#ifdef CONFIG_ARCH_TEGRA_HAS_SATA
-        tegra_powergate_partition_with_clk_off(TEGRA_POWERGATE_SATA);
-#endif
-#ifdef CONFIG_ARCH_TEGRA_HAS_PCIE
-	tegra_powergate_partition_with_clk_off(TEGRA_POWERGATE_PCIE);
-#endif
+
 }
 
 static inline unsigned long gizmo_readl(unsigned long offset)

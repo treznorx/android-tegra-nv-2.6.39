@@ -23,7 +23,7 @@
 
 /* GPS and Magnetic sensor share the same enabling IO line */
 #define SMBA1002_GPSMAG_DISABLE  	TEGRA_GPIO_PV3 	/* 0= disabled */
-#define SMBA1002_3G_DISABLE		TEGRA_GPIO_PJ2 /* 0 = disabled */
+#define SMBA1002_3G_DISABLE		TEGRA_GPIO_PB0 /* 0 = disabled */
 #define SMBA1002_KEY_VOLUMEUP 	TEGRA_GPIO_PD4 	/* 0=pressed */
 #define SMBA1002_KEY_VOLUMEDOWN 	TEGRA_GPIO_PV4 	/* 0=pressed */
 #define SMBA1002_KEY_POWER 		TEGRA_GPIO_PV2 	/* 0=pressed */
@@ -32,6 +32,10 @@
 /* #define SMBA1002_EMC_SAMSUNG		*/
 /* #define SMBA1002_EMC_ELPIDA50NM	*/
 /* #define SMBA1002_EMC_ELPIDA40NM	*/
+
+
+#define ALC5623_GPIO_BASE (TEGRA_NR_GPIOS + 16)
+#define ALC5623_GP0 (ALC5623_GPIO_BASE)
 
 #define SMBA1002_CAMERA_POWER 	TEGRA_GPIO_PBB5 /* 1=powered on */
 #define SMBA1002_CAMERA_ROTATION	TEGRA_GPIO_PX7
@@ -51,18 +55,25 @@
 #define SMBA1002_FB_PAGES		2				/* At least, 2 video pages */
 #define SMBA1002_FB_HDMI_PAGES	2				/* At least, 2 video pages for HDMI */
 
-// Adam memory is 2xSZ_512M
+// smba1002 memory is 2xSZ_512M
 #define SMBA1002_MEM_SIZE 		SZ_512M			/* Total memory */
 #define SMBA1002_MEM_BANKS		1
 
-//#define SMBA1002_GPU_MEM_SIZE 		SZ_128M		/* Memory reserved for GPU */
-//#define SMBA1002_GPU_MEM_SIZE 	SZ_64M			/* Memory reserved for GPU */
-#define SMBA1002_GPU_MEM_SIZE    (90*SZ_1M)      /* Memory reserved for GPU */
+/*#define SMBA1002_GPU_MEM_SIZE 	SZ_128M*/		/* Memory reserved for GPU */
+/*#define SMBA1002_GPU_MEM_SIZE 	SZ_64M*/		/* Memory reserved for GPU */
+#define SMBA1002_GPU_MEM_SIZE 	(3*SZ_32M)		/* Memory reserved for GPU */
 
 #define SMBA1002_FB1_MEM_SIZE 	SZ_4M			/* Memory reserved for Framebuffer 1: LCD */
-#define SMBA1002_FB2_MEM_SIZE 	SZ_8M			/* Memory reserved for Framebuffer 2: HDMI out */
+#define SMBA1002_FB2_MEM_SIZE 	SZ_2M			/* Memory reserved for Framebuffer 2: HDMI out */
 
 #define DYNAMIC_GPU_MEM 1						/* use dynamic memory for GPU */
+
+#define SMBA1002_1024x600PANEL1 /* The smba1002 default panel */
+
+/* maximum allowed HDMI resolution */
+
+#define SMBA1002_1280x720HDMI
+
 
 /*#define SMBA1002_48KHZ_AUDIO*/ /* <- define this if you want 48khz audio sampling rate instead of 44100Hz */
 
@@ -78,7 +89,7 @@
 #define ALC5623_GP0		(ALC5623_GPIO_BASE)
 
 #define PMU_IRQ_BASE		(TEGRA_NR_IRQS)
-#define PMU_IRQ_RTC_ALM1 	(TPS6586X_INT_BASE + TPS6586X_INT_RTC_ALM1)
+#define PMU_IRQ_RTC_ALM1 	(PMU_IRQ_BASE + TPS6586X_INT_RTC_ALM1)
 
 #define	SMBA1002_ENABLE_VDD_VID	TEGRA_GPIO_PD1	/* 1=enabled.  Powers HDMI. Wait 500uS to let it stabilize before returning */
 
@@ -152,5 +163,15 @@ extern int smba1002_bt_pm_register_devices(void);
 extern int smba1002_nand_register_devices(void);
 extern int smba1002_camera_register_devices(void);
 
+/* Autocalculate framebuffer sizes */
+
+#define TEGRA_ROUND_ALLOC(x) (((x) + 4095) & ((unsigned)(-4096)))
+/*Framebuffer Size for default Gtablet Panel*/
+#define SMBA1002_FB_SIZE TEGRA_ROUND_ALLOC(1024*600*(16/8)*SMBA1002_FB_PAGES)
+/*Frambuffer size for 720p HDMI Framebuffer Output*/
+#define SMBA1002_FB_HDMI_SIZE TEGRA_ROUND_ALLOC(1280*720*(32/8)*2)
+
+
 #endif
 
+/*Limiting Frambuffers to Default Panel and 720p memory output.  Check board-shuttle.h for other options*/

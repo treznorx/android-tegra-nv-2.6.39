@@ -562,10 +562,14 @@ unsigned int tegra_idle_lp2_last(unsigned int sleep_time, unsigned int flags)
 	flush_cache_all();
 	outer_flush_all();
 	outer_disable();
+#ifdef CONFIG_CACHE_L2X0
+	l2x0_save();
+#endif
 
 	tegra_sleep_cpu(PLAT_PHYS_OFFSET - PAGE_OFFSET);
 
 #ifdef CONFIG_CACHE_L2X0
+	l2x0_restore();
 	l2x0_enable();
 #endif
 	tegra_cluster_switch_time(flags, tegra_cluster_switch_time_id_switch);

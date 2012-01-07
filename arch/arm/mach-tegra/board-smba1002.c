@@ -134,11 +134,11 @@ void smba1002_gps_mag_deinit(void)
 EXPORT_SYMBOL_GPL(smba1002_gps_mag_deinit);
 
 static struct tegra_suspend_platform_data smba1002_suspend = {
-	.cpu_timer = 5000,
-	.cpu_off_timer = 5000,
+	.cpu_timer = 7000,
+	.cpu_off_timer = 0,
 	.core_timer = 0x7e7e,
 	.core_off_timer = 0x7f,
-    .corereq_high = false,
+        .corereq_high = false,
 	.sysclkreq_high = true,
 	.suspend_mode = TEGRA_SUSPEND_LP1,
 #if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,38) /* NB: 2.6.39+ handles this automatically */
@@ -162,7 +162,7 @@ static void __init tegra_smba1002_init(void)
 #endif
 
 	/* force consoles to stay enabled across suspend/resume */
-	// console_suspend_enabled = 0;	
+	console_suspend_enabled = 0;	
 
 	/* Init the suspend information */
 	tegra_init_suspend(&smba1002_suspend);
@@ -231,13 +231,13 @@ static void __init tegra_smba1002_init(void)
 //	smba1002_wlan_pm_register_devices();
 	
 	/* Register gps powermanagement devices */
-	smba1002_gps_pm_register_devices();
+	//smba1002_gps_pm_register_devices();
 
 	/* Register gsm powermanagement devices */
-	smba1002_gsm_pm_register_devices();
+	//smba1002_gsm_pm_register_devices();
 	
 	/* Register Bluetooth powermanagement devices */
-	smba1002_bt_pm_register_devices();
+	//smba1002_bt_pm_register_devices();
 
 	/* Register Camera powermanagement devices */
 //	smba1002_camera_register_devices();
@@ -245,8 +245,8 @@ static void __init tegra_smba1002_init(void)
 	/* Register NAND flash devices */
 	smba1002_nand_register_devices();
 	
-	smba1002_gps_mag_init();
-	smba1002_gps_mag_poweron();
+	//smba1002_gps_mag_init();
+	//smba1002_gps_mag_poweron();
 #if 0
 	/* Finally, init the external memory controller and memory frequency scaling
    	   NB: This is not working on SMBA1002. And seems there is no point in fixing it,
