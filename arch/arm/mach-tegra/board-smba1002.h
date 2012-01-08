@@ -159,7 +159,9 @@ extern int smba1002_sensors_register_devices(void);
 extern int smba1002_wlan_pm_register_devices(void);
 extern int smba1002_gps_pm_register_devices(void);
 extern int smba1002_gsm_pm_register_devices(void);
-extern int smba1002_bt_pm_register_devices(void);
+//extern int smba1002_bt_pm_register_devices(void);
+extern void smba1002_setup_bluesleep(void);
+extern void smba1002_bt_rfkill(void);
 extern int smba1002_nand_register_devices(void);
 extern int smba1002_camera_register_devices(void);
 

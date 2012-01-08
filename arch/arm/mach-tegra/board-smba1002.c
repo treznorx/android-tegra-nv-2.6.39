@@ -238,6 +238,8 @@ static void __init tegra_smba1002_init(void)
 	
 	/* Register Bluetooth powermanagement devices */
 	//smba1002_bt_pm_register_devices();
+	smba1002_bt_rfkill();
+	smba1002_setup_bluesleep();
 
 	/* Register Camera powermanagement devices */
 //	smba1002_camera_register_devices();

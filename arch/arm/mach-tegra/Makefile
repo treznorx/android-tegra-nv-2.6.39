@@ -188,7 +188,6 @@ obj-${CONFIG_MACH_SMBA1002}              += board-smba1002-wdt.o
 #obj-${CONFIG_MACH_SMBA1002}              += board-smba1002-wlan.o
 obj-${CONFIG_MACH_SMBA1002}              += board-smba1002.o
 # smba1002 power management drivers
-obj-${CONFIG_MACH_SMBA1002}              += board-smba1002-pm-bluetooth.o
 obj-${CONFIG_MACH_SMBA1002}              += board-smba1002-pm-camera.o
 obj-${CONFIG_MACH_SMBA1002}              += board-smba1002-pm-gps.o
 obj-${CONFIG_MACH_SMBA1002}              += board-smba1002-pm-gsm.o
