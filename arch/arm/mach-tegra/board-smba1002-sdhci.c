@@ -137,7 +137,7 @@ static int smba1002_wifi_power(int on)
         if (on)
                 clk_enable(wifi_32k_clk);
         else
-                clk_disable(wifi_32k_clk);
+                //clk_disable(wifi_32k_clk);
 
         return 0;
 }

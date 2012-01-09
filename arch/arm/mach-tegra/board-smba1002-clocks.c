@@ -277,7 +277,7 @@ static __initdata struct tegra_clk_init_table smba1002_clk_init_table[] = {
 	{ "pwm",    	"clk_m",   		 12000000,  false},		/* tegra-pwm.0 tegra-pwm.1 tegra-pwm.2 tegra-pwm.3*/
 	
 	{ "kbc",		"clk_32k",			32768,	false},		/* tegra-kbc */
-	{ "blink",		"clk_32k",			32768,	true},		/* used for bluetooth */
+	{ "blink",		"clk_32k",			32768,	false},		/* used for bluetooth */
 
 	{ NULL,		NULL,		0,		0},
 };
