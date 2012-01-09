@@ -77,7 +77,7 @@ static __initdata struct tegra_clk_init_table smba1002_clk_init_table[] = {
 	{ "pll_p",		"clk_m",		216000000,	true},		/* must be always on */
 	{ "pll_p_out1",	"pll_p",		 28800000,	true},		/* must be always on - audio clocks ...*/
 //	{ "pll_p_out2",	"pll_p",		 48000000,	true},		/* must be always on - usb perhaps ? unused ?*/
-	{ "pll_p_out2",	"pll_p",		 108000000,	true},		/* must be always on - usb perhaps ? unused ?*/
+    { "pll_p_out2", "pll_p", 216000000, true}, /* must be always on - usb perhaps ? unused ?*/
 	{ "pll_p_out3",	"pll_p",		 72000000,	true},		/* must be always on - i2c, camera */
 	{ "pll_p_out4",	"pll_p",		 26000000,	true},		/* must be always on - USB ulpi */
 	
@@ -90,7 +90,7 @@ static __initdata struct tegra_clk_init_table smba1002_clk_init_table[] = {
 	/* pll_c is used as graphics clock and system clock */
 	{ "pll_c",		"clk_m",		600000000,	true},		/* always on - graphics and camera clocks */
 //	{ "pll_c_out1",	"pll_c",		108000000,	true},		/* must be always on - system clock */
-	{ "pll_c_out1",	"pll_c",		171428571,	true},		/* must be always on - system clock */
+    { "pll_c_out1", "pll_c", 240000000, true}, /* must be always on - system clock */
 
 	{ "sclk",		"pll_p_out2",	108000000,	true},		/* must be always on */
 	{ "avp.sclk",   	NULL,		108000000,      false},         /* must be always on */
@@ -115,8 +115,8 @@ static __initdata struct tegra_clk_init_table smba1002_clk_init_table[] = {
 
 	/* pll_d and pll_d_out0 are clock sources for HDMI output */
 	{ "pll_d",		"clk_m",		  5000000,	true},		/* hdmi clock */
-//	{ "pll_d_out0", "pll_d",    	  5000000,  true},		/* hdmi clock */
-	{ "pll_d_out0", "pll_d",    	  2500000,  true},		/* hdmi clock */
+//	{ "pll_d_out0", "pll_d",    	 5000000,  true},		/* hdmi clock */
+    { "pll_d_out0", "pll_d", 2500000 , true}, /* hdmi clock */
 
 	{ "clk_d",		"clk_m",		 24000000,	true},
 
@@ -124,9 +124,9 @@ static __initdata struct tegra_clk_init_table smba1002_clk_init_table[] = {
 	{ "pll_u",  	"clk_m",    	480000000,  false},		/* USB ulpi clock */
 
         /* pll_x */
-        { "pll_x",      "clk_m",        760000000,  true},              /* */
-        { "cclk",               "pll_x",                760000000,  true},
-        { "cpu",                "cclk",                 760000000,  true},
+    { "pll_x", "clk_m", 1200000000, true}, /* */
+    { "cclk", "pll_x", 1200000000, true},
+    { "cpu", "cclk", 1200000000, true},
 	
 	/* Peripherals - Always on */
 	{ "csite",		"pll_p",		144000000,	true},		/* csite - coresite */ /* always on */
@@ -208,14 +208,15 @@ static __initdata struct tegra_clk_init_table smba1002_clk_init_table[] = {
 	{ CDEV2,   NULL,	0,  false}, 	/* probably used as USB clock - perhaps 24mhz ?*/	
 
 	
-	{ "i2c1_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.0 */
-	{ "i2c2_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.1 */
-	{ "i2c3_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.2 */
-	{ "dvc_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.3 */
-	{ "i2c1",		"clk_m",		  800000,	false},		/* tegra-i2c.0 */
-	{ "i2c2",		"clk_m",		  3000000,	false},		/* tegra-i2c.1 */
-	{ "i2c3",		"clk_m",		  12000000,	false},		/* tegra-i2c.2 */
-	{ "dvc",		"clk_m",		  3000000,	false},		/* tegra-i2c.3 */
+   { "i2c1_i2c", "pll_p_out3", 72000000, true}, /* tegra-i2c.0 */
+    { "i2c2_i2c", "pll_p_out3", 72000000, true}, /* tegra-i2c.1 */
+    { "i2c3_i2c", "pll_p_out3", 72000000, true}, /* tegra-i2c.2 */
+    { "dvc_i2c", "pll_p_out3", 72000000, true}, /* tegra-i2c.3 */
+
+    { "i2c1", "clk_m", 800000, false}, /* tegra-i2c.0 */
+    { "i2c2", "clk_m", 3000000, false}, /* tegra-i2c.1 */
+    { "i2c3", "clk_m", 12000000, false}, /* tegra-i2c.2 */
+    { "dvc", "clk_m", 3000000, false}, /* tegra-i2c.3 */
 
 	{ "apbdma",		"pclk",			108000000,	true}, 	/* tegra-dma */
 	{ "uarta",		"pll_p",		216000000,	false},		/* tegra_uart.0 uart.0 */
@@ -228,7 +229,7 @@ static __initdata struct tegra_clk_init_table smba1002_clk_init_table[] = {
 	{ "disp2",  	"pll_p",    	216000000, 	false},		/* tegradc.1 */	
 	
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,38)	
-	{ "dsi",		"pll_d",		  5000000,	false},		/* tegra_dc.0, tegra_dc.1 */
+	{ "dsi",		"pll_d",		  2500000,	false},		/* tegra_dc.0, tegra_dc.1 */
 #else
 	{ "dsi",		"pll_d_out0",	  2500000,	false},		/* tegra_dc.0, tegra_dc.1 - bug on kernel 2.6.36*/
 #endif
