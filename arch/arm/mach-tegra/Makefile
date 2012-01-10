@@ -195,8 +195,7 @@ obj-${CONFIG_MACH_SMBA1002}              += board-smba1002-pm-gsm.o
 
 # Adam arch drivers
 obj-${CONFIG_MACH_ADAM}              += board-adam-aes.o
-#obj-${CONFIG_MACH_ADAM}              += board-adam-audio.o
-#obj-${CONFIG_MACH_ADAM}              += board-adam-jack.o
+obj-${CONFIG_MACH_ADAM}              += board-adam-audio.o
 obj-${CONFIG_MACH_ADAM}              += board-adam-bootinfo.o
 obj-${CONFIG_MACH_ADAM}              += board-adam-bt.o
 obj-${CONFIG_MACH_ADAM}              += board-adam-camera.o
