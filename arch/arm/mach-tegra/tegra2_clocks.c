@@ -405,7 +405,7 @@ static struct clk tegra2_clk_twd = {
 		 atomic context which cannot take a mutex. */
 	.name     = "twd",
 	.ops      = &tegra2_twd_ops,
-	.max_rate = 1000000000,	/* Same as tegra_clk_virtual_cpu.max_rate */
+	.max_rate = 1200000000,	/* Same as tegra_clk_virtual_cpu.max_rate */
 	.mul      = 1,
 	.div      = 4,
 };
@@ -1802,6 +1802,7 @@ static struct clk_pll_freq_table tegra_pll_d_freq_table[] = {
 	{ 19200000, 216000000, 135, 12, 1, 3},
 	{ 26000000, 216000000, 216, 26, 1, 4},
 
+
 	{ 12000000,   5000000, 10, 24, 1, 4},
 	{ 12000000,  10000000, 10, 12, 1, 4},
 	{ 12000000, 161500000, 323, 24, 1, 4},
@@ -1943,7 +1944,7 @@ static struct clk tegra_pll_x = {
 	.ops       = &tegra_pll_ops,
 	.reg       = 0xe0,
 	.parent    = &tegra_clk_m,
-	.max_rate  = 1000000000,
+	.max_rate  = 1200000000,
 	.u.pll = {
 		.input_min = 2000000,
 		.input_max = 31000000,
@@ -2089,7 +2090,7 @@ static struct clk tegra_clk_cclk = {
 	.inputs	= mux_cclk,
 	.reg	= 0x20,
 	.ops	= &tegra_super_ops,
-	.max_rate = 1000000000,
+	.max_rate = 1200000000,
 };
 
 static struct clk tegra_clk_sclk = {
@@ -2105,8 +2106,8 @@ static struct clk tegra_clk_virtual_cpu = {
 	.name      = "cpu",
 	.parent    = &tegra_clk_cclk,
 	.ops       = &tegra_cpu_ops,
-	.max_rate  = 1000000000,
-	.u.cpu = {
+	.max_rate  = 1200000000,
+	.u.cpu = {   
 		.main      = &tegra_pll_x,
 		.backup    = &tegra_pll_p,
 	},
@@ -2352,20 +2353,20 @@ struct clk tegra_list_periph_clks[] = {
 	PERIPH_CLK("owr",	"tegra_w1",		NULL,	71,	0x1cc,	0x31E,	26000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U71 | PERIPH_ON_APB),
 	PERIPH_CLK("nor",	"nor",			NULL,	42,	0x1d0,	0x31E,	92000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U71), /* requires min voltage */
 	PERIPH_CLK("mipi",	"mipi",			NULL,	50,	0x174,	0x31E,	60000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U71 | PERIPH_ON_APB), /* scales with voltage */
-	PERIPH_CLK("i2c1",	"tegra-i2c.0",		NULL,	12,	0x124,	0x31E,	26000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U16 | PERIPH_ON_APB),
-	PERIPH_CLK("i2c2",	"tegra-i2c.1",		NULL,	54,	0x198,	0x31E,	26000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U16 | PERIPH_ON_APB),
-	PERIPH_CLK("i2c3",	"tegra-i2c.2",		NULL,	67,	0x1b8,	0x31E,	26000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U16 | PERIPH_ON_APB),
-	PERIPH_CLK("dvc",	"tegra-i2c.3",		NULL,	47,	0x128,	0x31E,	26000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U16 | PERIPH_ON_APB),
-	PERIPH_CLK("i2c1_i2c",  "tegra-i2c.0",    "i2c",  0,  0,  0x31E,  72000000,  mux_pllp_out3,      0),
-	PERIPH_CLK("i2c2_i2c",  "tegra-i2c.1",    "i2c",  0,  0,  0x31E,  72000000,  mux_pllp_out3,      0),
-	PERIPH_CLK("i2c3_i2c",  "tegra-i2c.2",    "i2c",  0,  0,  0x31E,  72000000,  mux_pllp_out3,      0),
-	PERIPH_CLK("dvc_i2c",  "tegra-i2c.3",    "i2c",  0,  0,  0x31E,  72000000,  mux_pllp_out3,      0),
+	PERIPH_CLK("i2c1",	"tegra-i2c.0",		NULL,	12,	0x124,	0x31E,	26000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U71 | PERIPH_ON_APB),
+	PERIPH_CLK("i2c2",	"tegra-i2c.1",		NULL,	54,	0x198,	0x31E,	26000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U71 | PERIPH_ON_APB),
+	PERIPH_CLK("i2c3",	"tegra-i2c.2",		NULL,	67,	0x1b8,	0x31E,	26000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U71 | PERIPH_ON_APB),
+	PERIPH_CLK("dvc",	"tegra-i2c.3",		NULL,	47,	0x128,	0x31E,	26000000,  mux_pllp_pllc_pllm_clkm,	MUX | DIV_U71 | PERIPH_ON_APB),
+	PERIPH_CLK("i2c1_i2c",	"tegra-i2c.0",		"i2c",	0,	0,	0x31E,	72000000,  mux_pllp_out3,			0),
+	PERIPH_CLK("i2c2_i2c",	"tegra-i2c.1",		"i2c",	0,	0,	0x31E,	72000000,  mux_pllp_out3,			0),
+	PERIPH_CLK("i2c3_i2c",	"tegra-i2c.2",		"i2c",	0,	0,	0x31E,	72000000,  mux_pllp_out3,			0),
+	PERIPH_CLK("dvc_i2c",	"tegra-i2c.3",		"i2c",	0,	0,	0x31E,	72000000,  mux_pllp_out3,			0),
 	PERIPH_CLK("uarta",	"tegra_uart.0",		NULL,	6,	0x178,	0x31E,	600000000, mux_pllp_pllc_pllm_clkm,	MUX | PERIPH_ON_APB),
 	PERIPH_CLK("uartb",	"tegra_uart.1",		NULL,	7,	0x17c,	0x31E,	600000000, mux_pllp_pllc_pllm_clkm,	MUX | PERIPH_ON_APB),
 	PERIPH_CLK("uartc",	"tegra_uart.2",		NULL,	55,	0x1a0,	0x31E,	600000000, mux_pllp_pllc_pllm_clkm,	MUX | PERIPH_ON_APB),
 	PERIPH_CLK("uartd",	"tegra_uart.3",		NULL,	65,	0x1c0,	0x31E,	600000000, mux_pllp_pllc_pllm_clkm,	MUX | PERIPH_ON_APB),
 	PERIPH_CLK("uarte",	"tegra_uart.4",		NULL,	66,	0x1c4,	0x31E,	600000000, mux_pllp_pllc_pllm_clkm,	MUX | PERIPH_ON_APB),
-	PERIPH_CLK("3d",	"3d",			NULL,	24,	0x158,	0x31E,	300000000, mux_pllm_pllc_pllp_plla,	MUX | DIV_U71 | PERIPH_MANUAL_RESET), /* scales with voltage and process_id */
+	PERIPH_CLK("3d",	"3d",			NULL,	24,	0x158,	0x31E,	400000000, mux_pllm_pllc_pllp_plla,	MUX | DIV_U71 | PERIPH_MANUAL_RESET), /* scales with voltage and process_id */
 	PERIPH_CLK("2d",	"2d",			NULL,	21,	0x15c,	0x31E,	300000000, mux_pllm_pllc_pllp_plla,	MUX | DIV_U71), /* scales with voltage and process_id */
 	PERIPH_CLK("vi",	"tegra_camera",		"vi",	20,	0x148,	0x31E,	150000000, mux_pllm_pllc_pllp_plla,	MUX | DIV_U71), /* scales with voltage and process_id */
 	PERIPH_CLK("vi_sensor",	"tegra_camera",		"vi_sensor",	20,	0x1a8,	0x31E,	150000000, mux_pllm_pllc_pllp_plla,	MUX | DIV_U71 | PERIPH_NO_RESET), /* scales with voltage and process_id */
@@ -2451,6 +2452,7 @@ struct clk_duplicate tegra_clk_duplicates[] = {
 	CLK_DUPLICATE("cop", "tegra-avp", "cop"),
 	CLK_DUPLICATE("vde", "tegra-aes", "vde"),
 	CLK_DUPLICATE("twd", "smp_twd", NULL),
+	CLK_DUPLICATE("sbc1", "tegra_spi_slave.0", NULL),
 	CLK_DUPLICATE("bsea", "tegra-aes", "bsea"),
 };
 
@@ -2510,9 +2512,9 @@ static struct tegra_sku_rate_limit sku_limits[] =
 	RATE_LIMIT("cclk",	750000000, 0x07, 0x10),
 	RATE_LIMIT("pll_x",	750000000, 0x07, 0x10),
 
-	RATE_LIMIT("cpu",	1000000000, 0x04, 0x08, 0x0F),
-	RATE_LIMIT("cclk",	1000000000, 0x04, 0x08, 0x0F),
-	RATE_LIMIT("pll_x",	1000000000, 0x04, 0x08, 0x0F),
+	RATE_LIMIT("cpu",	1200000000, 0x04, 0x08, 0x0F),
+	RATE_LIMIT("cclk",	1200000000, 0x04, 0x08, 0x0F),
+	RATE_LIMIT("pll_x",	1200000000, 0x04, 0x08, 0x0F),
 
 	RATE_LIMIT("cpu",	1200000000, 0x14, 0x17, 0x18, 0x1B, 0x1C),
 	RATE_LIMIT("cclk",	1200000000, 0x14, 0x17, 0x18, 0x1B, 0x1C),
@@ -2521,7 +2523,8 @@ static struct tegra_sku_rate_limit sku_limits[] =
 	RATE_LIMIT("sclk",	240000000, 0x04, 0x7, 0x08, 0x0F, 0x10),
 	RATE_LIMIT("hclk",	240000000, 0x04, 0x7, 0x08, 0x0F, 0x10),
 	RATE_LIMIT("vde",	240000000, 0x04, 0x7, 0x08, 0x0F, 0x10),
-	RATE_LIMIT("3d",	300000000, 0x04, 0x7, 0x08, 0x0F, 0x10),
+	RATE_LIMIT("3d",	333000000, 0x04, 0x7, 0x08, 0x0F, 0x10),
+//	RATE_LIMIT("mpe",       300000000, 0x04, 0x7, 0x08, 0x0F, 0x10),
 
 	RATE_LIMIT("host1x",	108000000, 0x0F),
 

@@ -23,7 +23,7 @@
 
 /* GPS and Magnetic sensor share the same enabling IO line */
 #define SMBA1002_GPSMAG_DISABLE  	TEGRA_GPIO_PV3 	/* 0= disabled */
-#define SMBA1002_3G_DISABLE		TEGRA_GPIO_PB0 /* 0 = disabled */
+#define SMBA1002_3G_DISABLE		TEGRA_GPIO_PJ2 /* 0 = disabled */
 #define SMBA1002_KEY_VOLUMEUP 	TEGRA_GPIO_PD4 	/* 0=pressed */
 #define SMBA1002_KEY_VOLUMEDOWN 	TEGRA_GPIO_PV4 	/* 0=pressed */
 #define SMBA1002_KEY_POWER 		TEGRA_GPIO_PV2 	/* 0=pressed */
@@ -33,9 +33,6 @@
 /* #define SMBA1002_EMC_ELPIDA50NM	*/
 /* #define SMBA1002_EMC_ELPIDA40NM	*/
 
-
-#define ALC5623_GPIO_BASE (TEGRA_NR_GPIOS + 16)
-#define ALC5623_GP0 (ALC5623_GPIO_BASE)
 
 #define SMBA1002_CAMERA_POWER 	TEGRA_GPIO_PBB5 /* 1=powered on */
 #define SMBA1002_CAMERA_ROTATION	TEGRA_GPIO_PX7
@@ -89,7 +86,7 @@
 #define ALC5623_GP0		(ALC5623_GPIO_BASE)
 
 #define PMU_IRQ_BASE		(TEGRA_NR_IRQS)
-#define PMU_IRQ_RTC_ALM1 	(PMU_IRQ_BASE + TPS6586X_INT_RTC_ALM1)
+#define PMU_IRQ_RTC_ALM1 	(TPS6586X_INT_BASE + TPS6586X_INT_RTC_ALM1)
 
 #define	SMBA1002_ENABLE_VDD_VID	TEGRA_GPIO_PD1	/* 1=enabled.  Powers HDMI. Wait 500uS to let it stabilize before returning */
 

@@ -46,9 +46,15 @@
 
 static struct resource smba1002_bcm4329_rfkill_resources[] = {
 	{
-		.name   = "bcm4329_nshutdown_gpio",
+		.name   = "bcm4329_nreset_gpio",
 		.start  = SMBA1002_BT_RST,
 		.end    = SMBA1002_BT_RST,
+		.flags  = IORESOURCE_IO,
+	},
+	{
+		.name   = "bcm4329_nshutdown_gpio",
+		.start  = SMBA1002_TS_POWER,
+		.end    = SMBA1002_TS_POWER,
 		.flags  = IORESOURCE_IO,
 	},
 };

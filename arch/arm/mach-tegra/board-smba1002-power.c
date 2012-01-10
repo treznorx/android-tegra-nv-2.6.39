@@ -25,7 +25,7 @@
 #include <linux/console.h>
 #include <linux/regulator/machine.h>
 #include <linux/regulator/fixed.h>
-#include <linux/regulator/virtual_adj.h>
+//#include <linux/regulator/virtual_adj.h>
 #include <linux/regulator/consumer.h>
 #include <linux/mfd/tps6586x.h>
 #include <linux/power_supply.h>
@@ -367,7 +367,7 @@ static struct fixed_voltage_config ldo_tps2051B_cfg
 	= FIXED_REGULATOR_CONFIG(ldo_tps2051B  , 5000, SMBA1002_ENABLE_VDD_VID	, 1,1, 500000, 0, ldo_tps2051B_data);
 
 /* the always on vdd_aon: required for freq. scaling to work */
-static struct virtual_adj_voltage_config vdd_aon_cfg = {
+/*static struct virtual_adj_voltage_config vdd_aon_cfg = {
 	.supply_name = "REG-AON",
 	.id			 = -1,
 	.min_mV 	 =  625,
@@ -375,7 +375,7 @@ static struct virtual_adj_voltage_config vdd_aon_cfg = {
 	.step_mV 	 =   25,
 	.mV			 = 1800,
 	.init_data	 = &vdd_aon_data,
-};
+};*/
 
 #define TPS_ADJ_REG(_id, _data)			\
 	{									\
@@ -454,7 +454,7 @@ static struct i2c_board_info __initdata smba1002_regulators[] = {
 
 static struct platform_device smba1002_ldo_tps2051B_reg_device = 
 	GPIO_FIXED_REG(3,ldo_tps2051B_cfg); /* id is 3, because 0-2 are already used in the PMU gpio controlled fixed regulators */
-
+/*
 static struct platform_device smba1002_vdd_aon_reg_device = 
 {
 	.name = "reg-virtual-adj-voltage",
@@ -462,7 +462,7 @@ static struct platform_device smba1002_vdd_aon_reg_device =
 	.dev = {
 		.platform_data = &vdd_aon_cfg,
 	},
-};
+};*/
 
 /*
 static struct regulator_consumer_supply bq24610_consumers[] = {
@@ -688,8 +688,8 @@ struct platform_device tegra_rtc_device = {
 #endif
 
 static struct platform_device *smba1002_power_devices[] __initdata = {
-	&smba1002_ldo_tps2051B_reg_device,
-	&smba1002_vdd_aon_reg_device,
+	//&adam_ldo_tps2051B_reg_device,
+	//&adam_vdd_aon_reg_device,
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,38)	
 	&tegra_pmu_device,
 #else
