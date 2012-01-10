@@ -192,31 +192,26 @@ static __initdata struct tegra_clk_init_table smba1002_clk_init_table[] = {
 #define CDEV1 "clk_dev1"
 #define CDEV2 "clk_dev2"
 #endif
-#ifdef ALC5623_IS_MASTER		
-//	{ CDEV1,   NULL,	18432000,  false},		/* used as audio CODEC MCLK */	
-	{ CDEV1,   NULL,	0,  false},		/* used as audio CODEC MCLK */	
-#else
 #       ifdef SMBA1002_48KHZ_AUDIO
 //        { CDEV1,   NULL /*"pll_a_out0"*/,12288000,  false},             /* used as audio CODEC MCLK */
-        { CDEV1,   NULL /*"pll_a_out0"*/,0,  false},             /* used as audio CODEC MCLK */
+        { CDEV1,   NULL /*"pll_a_out0"*/,0,  true},             /* used as audio CODEC MCLK */
 #       else
 //        { CDEV1,   NULL /*"pll_a_out0"*/,11289600,  false},             /* used as audio CODEC MCLK */
-        { CDEV1,   NULL /*"pll_a_out0"*/,0,  false},             /* used as audio CODEC MCLK */
+        { CDEV1,   NULL /*"pll_a_out0"*/,0,  true},             /* used as audio CODEC MCLK */
 #       endif
 #endif
 //	{ CDEV2,   NULL,	26000000,  false}, 	/* probably used as USB clock - perhaps 24mhz ?*/	
 	{ CDEV2,   NULL,	0,  false}, 	/* probably used as USB clock - perhaps 24mhz ?*/	
 
 	
-   { "i2c1_i2c", "pll_p_out3", 72000000, true}, /* tegra-i2c.0 */
-    { "i2c2_i2c", "pll_p_out3", 72000000, true}, /* tegra-i2c.1 */
-    { "i2c3_i2c", "pll_p_out3", 72000000, true}, /* tegra-i2c.2 */
-    { "dvc_i2c", "pll_p_out3", 72000000, true}, /* tegra-i2c.3 */
-
-    { "i2c1", "clk_m", 3000000, false}, /* tegra-i2c.0 */
-    { "i2c2", "clk_m", 3000000, false}, /* tegra-i2c.1 */
-    { "i2c3", "clk_m", 3000000, false}, /* tegra-i2c.2 */
-    { "dvc", "clk_m", 3000000, false}, /* tegra-i2c.3 */
+	{ "i2c1_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.0 */
+	{ "i2c2_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.1 */
+	{ "i2c3_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.2 */
+	{ "dvc_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.3 */
+	{ "i2c1",		"clk_m",		  3000000,	false},		/* tegra-i2c.0 */
+	{ "i2c2",		"clk_m",		  3000000,	false},		/* tegra-i2c.1 */
+	{ "i2c3",		"clk_m",		  3000000,	false},		/* tegra-i2c.2 */
+	{ "dvc",		"clk_m",		  3000000,	false},		/* tegra-i2c.3 */
 
 	{ "apbdma",		"pclk",			108000000,	true}, 	/* tegra-dma */
 	{ "uarta",		"pll_p",		216000000,	false},		/* tegra_uart.0 uart.0 */
