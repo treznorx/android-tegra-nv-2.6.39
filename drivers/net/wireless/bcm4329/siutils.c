@@ -184,9 +184,9 @@ static bool
 si_buscore_setup(si_info_t *sii, chipcregs_t *cc, uint bustype, uint32 savewin,
 	uint *origidx, void *regs)
 {
-	bool pci, pcie;
+	//bool pci, pcie;
 	uint i;
-	uint pciidx, pcieidx, pcirev, pcierev;
+	//uint pciidx, pcieidx, pcirev, pcierev;
 
 	cc = si_setcoreidx(&sii->pub, SI_CC_IDX);
 	ASSERT((uintptr)cc);
@@ -215,11 +215,11 @@ si_buscore_setup(si_info_t *sii, chipcregs_t *cc, uint bustype, uint32 savewin,
 	sii->pub.buscoretype = NODEV_CORE_ID;
 	sii->pub.buscorerev = NOREV;
 	sii->pub.buscoreidx = BADIDX;
-
+/*
 	pci = pcie = FALSE;
 	pcirev = pcierev = NOREV;
 	pciidx = pcieidx = BADIDX;
-
+*/
 	for (i = 0; i < sii->numcores; i++) {
 		uint cid, crev;
 
@@ -231,7 +231,7 @@ si_buscore_setup(si_info_t *sii, chipcregs_t *cc, uint bustype, uint32 savewin,
 		SI_MSG(("CORE[%d]: id 0x%x rev %d base 0x%x regs 0x%p\n",
 		        i, cid, crev, sii->common_info->coresba[i], sii->common_info->regs[i]));
 
-		if (BUSTYPE(bustype) == PCI_BUS) {
+		/*if (BUSTYPE(bustype) == PCI_BUS) {
 			if (cid == PCI_CORE_ID) {
 				pciidx = i;
 				pcirev = crev;
@@ -241,7 +241,7 @@ si_buscore_setup(si_info_t *sii, chipcregs_t *cc, uint bustype, uint32 savewin,
 				pcierev = crev;
 				pcie = TRUE;
 			}
-		} else if ((BUSTYPE(bustype) == PCMCIA_BUS) &&
+		} else*/ if ((BUSTYPE(bustype) == PCMCIA_BUS) &&
 		           (cid == PCMCIA_CORE_ID)) {
 			sii->pub.buscorerev = crev;
 			sii->pub.buscoretype = cid;
@@ -295,7 +295,6 @@ si_doattach(si_info_t *sii, uint devid, osl_t *osh, void *regs,
 	struct si_pub *sih = &sii->pub;
 	uint32 w, savewin;
 	chipcregs_t *cc;
-	char *pvars = NULL;
 	uint origidx;
 
 	ASSERT(GOODREGS(regs));
@@ -387,10 +386,6 @@ si_doattach(si_info_t *sii, uint devid, osl_t *osh, void *regs,
 		SI_ERROR(("si_doattach: si_buscore_setup failed\n"));
 		return NULL;
 	}
-
-	pvars = NULL;
-
-
 
 		if (sii->pub.ccrev >= 20) {
 			cc = (chipcregs_t *)si_setcore(sih, CC_CORE_ID, 0);
@@ -1006,9 +1001,6 @@ si_watchdog(si_t *sih, uint ticks)
 void
 si_watchdog_ms(si_t *sih, uint32 ms)
 {
-	si_info_t *sii;
-
-	sii = SI_INFO(sih);
 
 	si_watchdog(sih, wd_msticks * ms);
 }
@@ -1131,10 +1123,6 @@ si_gpioout(si_t *sih, uint32 mask, uint32 val, uint8 priority)
 uint32
 si_gpioreserve(si_t *sih, uint32 gpio_bitmask, uint8 priority)
 {
-	si_info_t *sii;
-
-	sii = SI_INFO(sih);
-
 	/* only cores on SI_BUS share GPIO's and only applcation users need to
 	 * reserve/release GPIO
 	 */
@@ -1166,10 +1154,6 @@ si_gpioreserve(si_t *sih, uint32 gpio_bitmask, uint8 priority)
 uint32
 si_gpiorelease(si_t *sih, uint32 gpio_bitmask, uint8 priority)
 {
-	si_info_t *sii;
-
-	sii = SI_INFO(sih);
-
 	/* only cores on SI_BUS share GPIO's and only applcation users need to
 	 * reserve/release GPIO
 	 */
@@ -1197,10 +1181,7 @@ si_gpiorelease(si_t *sih, uint32 gpio_bitmask, uint8 priority)
 uint32
 si_gpioin(si_t *sih)
 {
-	si_info_t *sii;
 	uint regoff;
-
-	sii = SI_INFO(sih);
 	regoff = 0;
 
 	regoff = OFFSETOF(chipcregs_t, gpioin);
@@ -1211,10 +1192,8 @@ si_gpioin(si_t *sih)
 uint32
 si_gpiointpolarity(si_t *sih, uint32 mask, uint32 val, uint8 priority)
 {
-	si_info_t *sii;
 	uint regoff;
 
-	sii = SI_INFO(sih);
 	regoff = 0;
 
 	/* gpios could be shared on router platforms */
@@ -1232,10 +1211,8 @@ si_gpiointpolarity(si_t *sih, uint32 mask, uint32 val, uint8 priority)
 uint32
 si_gpiointmask(si_t *sih, uint32 mask, uint32 val, uint8 priority)
 {
-	si_info_t *sii;
 	uint regoff;
 
-	sii = SI_INFO(sih);
 	regoff = 0;
 
 	/* gpios could be shared on router platforms */
@@ -1253,9 +1230,6 @@ si_gpiointmask(si_t *sih, uint32 mask, uint32 val, uint8 priority)
 uint32
 si_gpioled(si_t *sih, uint32 mask, uint32 val)
 {
-	si_info_t *sii;
-
-	sii = SI_INFO(sih);
 	if (sih->ccrev < 16)
 		return -1;
 
@@ -1267,9 +1241,6 @@ si_gpioled(si_t *sih, uint32 mask, uint32 val)
 uint32
 si_gpiotimerval(si_t *sih, uint32 mask, uint32 gpiotimerval)
 {
-	si_info_t *sii;
-
-	sii = SI_INFO(sih);
 
 	if (sih->ccrev < 16)
 		return -1;
@@ -1281,10 +1252,8 @@ si_gpiotimerval(si_t *sih, uint32 mask, uint32 gpiotimerval)
 uint32
 si_gpiopull(si_t *sih, bool updown, uint32 mask, uint32 val)
 {
-	si_info_t *sii;
 	uint offs;
 
-	sii = SI_INFO(sih);
 	if (sih->ccrev < 20)
 		return -1;
 
@@ -1295,10 +1264,8 @@ si_gpiopull(si_t *sih, bool updown, uint32 mask, uint32 val)
 uint32
 si_gpioevent(si_t *sih, uint regtype, uint32 mask, uint32 val)
 {
-	si_info_t *sii;
 	uint offs;
 
-	sii = SI_INFO(sih);
 	if (sih->ccrev < 11)
 		return -1;
 
@@ -1323,7 +1290,7 @@ si_gpio_handler_register(si_t *sih, uint32 event,
 
 	ASSERT(event);
 	ASSERT(cb != NULL);
-
+	
 	sii = SI_INFO(sih);
 	if (sih->ccrev < 11)
 		return NULL;
@@ -1348,7 +1315,7 @@ si_gpio_handler_unregister(si_t *sih, void *gpioh)
 {
 	si_info_t *sii;
 	gpioh_item_t *p, *n;
-
+	
 	sii = SI_INFO(sih);
 	if (sih->ccrev < 11)
 		return;
@@ -1383,7 +1350,7 @@ si_gpio_handler_process(si_t *sih)
 	uint32 status;
 	uint32 level = si_gpioin(sih);
 	uint32 edge = si_gpioevent(sih, GPIO_REGEVT, 0, 0);
-
+	
 	sii = SI_INFO(sih);
 	for (h = sii->gpioh_head; h != NULL; h = h->next) {
 		if (h->handler) {
@@ -1400,10 +1367,8 @@ si_gpio_handler_process(si_t *sih)
 uint32
 si_gpio_int_enable(si_t *sih, bool enable)
 {
-	si_info_t *sii;
 	uint offs;
 
-	sii = SI_INFO(sih);
 	if (sih->ccrev < 11)
 		return -1;
 
