@@ -204,7 +204,7 @@ static void __init tegra_smba1002_init(void)
 	smba1002_gpu_register_devices();
 
 	/* Register Audio devices */
-//	smba1002_audio_register_devices();
+	smba1002_audio_register_devices();
 
 	/* Register Jack devices */
 //	smba1002_jack_register_devices();
