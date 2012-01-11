@@ -199,7 +199,7 @@ static __initdata struct tegra_clk_init_table smba1002_clk_init_table[] = {
 //        { CDEV1,   NULL /*"pll_a_out0"*/,11289600,  false},             /* used as audio CODEC MCLK */
         { CDEV1,   NULL /*"pll_a_out0"*/,0,  true},             /* used as audio CODEC MCLK */
 #       endif
-#endif
+
 //	{ CDEV2,   NULL,	26000000,  false}, 	/* probably used as USB clock - perhaps 24mhz ?*/	
 	{ CDEV2,   NULL,	0,  false}, 	/* probably used as USB clock - perhaps 24mhz ?*/	
 
