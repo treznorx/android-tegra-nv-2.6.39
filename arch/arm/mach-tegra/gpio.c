@@ -342,13 +342,7 @@ static int tegra_gpio_irq_set_wake(struct irq_data *d, unsigned int enable)
 
 	ret = tegra_pm_irq_set_wake(d->irq, enable);
 
-	if (ret)
-		return ret;
 
-	ret = irq_set_irq_wake(bank->irq, enable);
-
-	if (ret)
-		tegra_pm_irq_set_wake(d->irq, !enable);
 
 	return ret;
 }
