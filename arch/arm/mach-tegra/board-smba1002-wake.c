@@ -67,6 +67,8 @@ static void smba1002_wake_event(struct input_handle *handle, unsigned int type, 
 	    cancel_delayed_work(&do_shutdown);
 	  }
 	}
+
+  
 }
 
 static int smba1002_wake_connect(struct input_handler *handler, struct input_dev *dev,

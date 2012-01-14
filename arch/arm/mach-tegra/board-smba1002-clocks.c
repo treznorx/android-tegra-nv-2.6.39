@@ -208,9 +208,9 @@ static __initdata struct tegra_clk_init_table smba1002_clk_init_table[] = {
 	{ "i2c2_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.1 */
 	{ "i2c3_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.2 */
 	{ "dvc_i2c",	"pll_p_out3",	 72000000,	false},		/* tegra-i2c.3 */
-	{ "i2c1",		"clk_m",		  3000000,	false},		/* tegra-i2c.0 */
+	{ "i2c1",		"clk_m",		  800000,	false},		/* tegra-i2c.0 */
 	{ "i2c2",		"clk_m",		  3000000,	false},		/* tegra-i2c.1 */
-	{ "i2c3",		"clk_m",		  3000000,	false},		/* tegra-i2c.2 */
+	{ "i2c3",		"clk_m",		  1200000,	false},		/* tegra-i2c.2 */
 	{ "dvc",		"clk_m",		  3000000,	false},		/* tegra-i2c.3 */
 
 	{ "apbdma",		"pclk",			108000000,	true}, 	/* tegra-dma */
